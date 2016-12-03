@@ -1,0 +1,12 @@
+
+# idea files
+idea
+*.iml
+
+# vim files
+*.sw*
+
+# gradle
+target
+build
+.gradle
