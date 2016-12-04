@@ -1,10 +1,12 @@
 apply plugin: 'scala'
 apply plugin: 'idea'
+apply plugin: 'application'
 
 
 ext {
-  scalaVersionMajor = '2.12'
-  scalaVersionFull  = '2.12.0'
+    scalaVersionMajor = '2.12'
+    scalaVersionFull  = '2.12.0'
+    logbackVersion = '1.1.7'
 }
 
 
@@ -13,22 +15,34 @@ repositories {
 }
 
 
+// Settings for application plugin
+mainClassName = 'com.doingfp.rest.App'
+
+
 dependencies {
     // scala library
     compile group: 'org.scala-lang', name: 'scala-library', version: "$scalaVersionFull"
 
     // dependency injection
     compile group: 'org.scaldi', name: "scaldi_$scalaVersionMajor", version: '0.5.8'
-
+    compile group: 'org.scaldi', name: "scaldi-akka_$scalaVersionMajor", version: '0.5.8'
 
     // akka-http
+    compile group: 'com.typesafe.akka', name: "akka-http_$scalaVersionMajor", version: '10.0.0'
+
+
+    // json
+    // TODO: add json support here
 
     // logging
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
-    compile group: 'org.scalactic', name: "scalactic_$scalaVersionMajor", version: '3.0.1'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: "$logbackVersion"
+    compile group: 'ch.qos.logback', name: 'logback-core', version: "$logbackVersion"
+    compile group: 'com.typesafe.scala-logging', name: "scala-logging_$scalaVersionMajor", version: '3.5.0'
 
     // test dependencies
     testCompile group: 'org.scalatest', name: "scalatest_$scalaVersionMajor", version: '3.0.1'
+    compile group: 'org.scalactic', name: "scalactic_$scalaVersionMajor", version: '3.0.1'
     testCompile 'junit:junit:4.12'
 }
 
@@ -39,6 +53,12 @@ dependencies {
  * compiled as Scala prject
  */
 task compile (dependsOn: 'compileScala') {
-  description 'Compiles scala project'
+    description "Compiles scala project"
+}
+
+task wrapper (type: Wrapper) {
+    description "Creates gradle wrapper, for systems that don't have gradle installed"
+    gradleVersion = '3.1'
+    distributionUrl = "http://services.gradle.org/distributions/gradle-${gradleVersion}-all.zip"
 }
 
