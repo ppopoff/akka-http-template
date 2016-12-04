@@ -41,8 +41,9 @@ dependencies {
     compile group: 'com.typesafe.scala-logging', name: "scala-logging_$scalaVersionMajor", version: '3.5.0'
 
     // test dependencies
+    testCompile group: 'org.scalacheck', name: "scalacheck_$scalaVersionMajor", version: '1.13.4'
     testCompile group: 'org.scalatest', name: "scalatest_$scalaVersionMajor", version: '3.0.1'
-    compile group: 'org.scalactic', name: "scalactic_$scalaVersionMajor", version: '3.0.1'
+    testCompile group: 'org.scalactic', name: "scalactic_$scalaVersionMajor", version: '3.0.1'
     testCompile 'junit:junit:4.12'
 }
 
