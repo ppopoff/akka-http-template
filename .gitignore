@@ -2,7 +2,7 @@
 *.log
 
 # IntelliJ IDEA specific
-idea
+.idea
 *.iml
 
 # Scala-IDE specific
