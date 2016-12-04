@@ -17,6 +17,7 @@
 *.sw*
 
 # gradle specific
+.gradletasknamecache
 /build/
 .gradle
 gradle-app.setting # Ignore gradle GUI config
